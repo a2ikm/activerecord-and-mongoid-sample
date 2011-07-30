@@ -4,6 +4,10 @@ class Todo < ActiveRecord::Base
   
   private
   def create_log
-    TodoLog.create(self.attributes.symbolize_keys.slice(:title, :done))
+    TodoLog.create(
+      :title => title,
+      :done  => !!done,
+      :todo_id => id
+    )
   end
 end
